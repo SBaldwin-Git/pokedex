@@ -1,0 +1,3 @@
+-Create scrollable grid similar to reference
+-Find colour palette for each pokemon
+-If not possible then you offwhite bevelled boxes
