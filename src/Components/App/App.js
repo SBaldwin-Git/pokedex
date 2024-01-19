@@ -18,6 +18,11 @@ function App() {
   const [id, setId] = useState("");
   const [generation, setGeneration] = useState("");
 
+  
+
+ 
+
+
   useEffect(() => {
     console.log("Fetching data...");
     fetch(BASE_URL)
@@ -26,7 +31,7 @@ function App() {
   }, []);
 
   // console log the pokemon state variable
-  console.log(pokemon.length > 0 ? pokemon[0].name : "Loading...");
+  console.log(pokemon.length > 0 ? pokemon : "Loading...");
 
   return <div className="App"></div>;
 }
