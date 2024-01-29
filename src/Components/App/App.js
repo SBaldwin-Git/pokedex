@@ -16,6 +16,11 @@ function App() {
   const [pokemon, setPokemon] = useState([]);
   const [spriteUrls, setSpriteUrls] = useState([]);
 
+  
+
+ 
+
+
   useEffect(() => {
     console.log("Fetching data...");
     fetch(BASE_URL)
