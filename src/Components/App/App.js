@@ -1,35 +1,67 @@
 import "./App.css";
 import { useState, useEffect } from "react";
+import { Container, Typography, Paper } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
+import {
+  createTheme,
+  responsiveFontSizes,
+  ThemeProvider,
+} from "@mui/material/styles";
 
 function App() {
-  // fetch the data from the API link https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0 and store it in a state variable
-  // create a function to handle the search input
-  // create a function to handle the search button
-  // create a function to handle the search by type
-  // create a function to handle the search by name
-  // create a function to handle the search by id
-  // create a function to handle the search by generation
+  let theme = createTheme();
+  theme = responsiveFontSizes(theme);
 
-  const BASE_URL = "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0";
+  const BASE_URL = "https://pokeapi.co/api/v2/pokemon?offset=251&limit=135";
   const [pokemon, setPokemon] = useState([]);
-  // const [search, setSearch] = useState("");
-  // const [type, setType] = useState("");
-  // const [name, setName] = useState("");
-  // const [id, setId] = useState("");
-  // const [generation, setGeneration] = useState("");
+  const [spriteUrls, setSpriteUrls] = useState([]);
 
   useEffect(() => {
     console.log("Fetching data...");
     fetch(BASE_URL)
       .then((response) => response.json())
-      .then((data) => setPokemon(data.results));
+      .then((data) => {
+        setPokemon(data.results);
+
+        // Extract sprite URLs and set them in the state
+        const urls = data.results.map((p) => p.url);
+        fetchSpriteUrls(urls);
+      });
   }, []);
 
+  // Function to fetch sprite URLs
+  const fetchSpriteUrls = (urls) => {
+    const spritePromises = urls.map((url) =>
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => data.sprites.front_default)
+    );
+
+    Promise.all(spritePromises)
+      .then((spriteUrls) => setSpriteUrls(spriteUrls))
+      .catch((error) => console.error("Error fetching sprite URLs:", error));
+  };
+
   return (
-    <div className="App">
-      <h1>Pokemon</h1>
-      <h2>{pokemon.length > 0 ? pokemon[0].name : "Loading..."}</h2>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Container className="App">
+        <Typography variant="h1">Pokemon</Typography>
+        <Grid container spacing={2}>
+          {pokemon.map((pokemon, index) => (
+            <Grid item xs={6} key={index}>
+              {/* Pokemon Name */}
+              <Paper>
+                {pokemon.name}
+                {/* Pokemon Sprite */}
+                {spriteUrls.length > 0 && (
+                  <img src={spriteUrls[index]} alt={pokemon.name} />
+                )}
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </ThemeProvider>
   );
 }
 
