@@ -12,11 +12,11 @@ function App() {
 
   const BASE_URL = "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0";
   const [pokemon, setPokemon] = useState([]);
-  const [search, setSearch] = useState("");
-  const [type, setType] = useState("");
-  const [name, setName] = useState("");
-  const [id, setId] = useState("");
-  const [generation, setGeneration] = useState("");
+  // const [search, setSearch] = useState("");
+  // const [type, setType] = useState("");
+  // const [name, setName] = useState("");
+  // const [id, setId] = useState("");
+  // const [generation, setGeneration] = useState("");
 
   useEffect(() => {
     console.log("Fetching data...");
@@ -25,10 +25,12 @@ function App() {
       .then((data) => setPokemon(data.results));
   }, []);
 
-  // console log the pokemon state variable
-  console.log(pokemon.length > 0 ? pokemon[0].name : "Loading...");
-
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <h1>Pokemon</h1>
+      <h2>{pokemon.length > 0 ? pokemon[0].name : "Loading..."}</h2>
+    </div>
+  );
 }
 
 export default App;
