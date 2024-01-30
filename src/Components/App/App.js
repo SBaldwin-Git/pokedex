@@ -1,12 +1,13 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { Container, Typography, Paper } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import {
   createTheme,
   responsiveFontSizes,
   ThemeProvider,
 } from "@mui/material/styles";
+import PokemonCard from "./PokemonCard";
 
 function App() {
   let theme = createTheme();
@@ -16,11 +17,6 @@ function App() {
   const [pokemon, setPokemon] = useState([]);
   const [spriteUrls, setSpriteUrls] = useState([]);
 
-  
-
- 
-
-
   useEffect(() => {
     console.log("Fetching data...");
     fetch(BASE_URL)
@@ -28,13 +24,11 @@ function App() {
       .then((data) => {
         setPokemon(data.results);
 
-        // Extract sprite URLs and set them in the state
         const urls = data.results.map((p) => p.url);
         fetchSpriteUrls(urls);
       });
   }, []);
 
-  // Function to fetch sprite URLs
   const fetchSpriteUrls = (urls) => {
     const spritePromises = urls.map((url) =>
       fetch(url)
@@ -54,14 +48,7 @@ function App() {
         <Grid container spacing={2}>
           {pokemon.map((pokemon, index) => (
             <Grid item xs={6} key={index}>
-              {/* Pokemon Name */}
-              <Paper>
-                {pokemon.name}
-                {/* Pokemon Sprite */}
-                {spriteUrls.length > 0 && (
-                  <img src={spriteUrls[index]} alt={pokemon.name} />
-                )}
-              </Paper>
+              <PokemonCard name={pokemon.name} spriteUrl={spriteUrls[index]} />
             </Grid>
           ))}
         </Grid>
