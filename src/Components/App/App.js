@@ -7,7 +7,7 @@ import {
   responsiveFontSizes,
   ThemeProvider,
 } from "@mui/material/styles";
-import PokemonCard from "./PokemonCard";
+import PokemonCard from "../PokemonCard/PokemonCard";
 
 function App() {
   let theme = createTheme();
