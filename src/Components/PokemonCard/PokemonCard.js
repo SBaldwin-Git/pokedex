@@ -9,6 +9,8 @@ function PokemonCard({ name, spriteUrl }) {
     justifyContent: "center",
   };
 
+  name = name.charAt(0).toUpperCase() + name.slice(1);
+
   return (
     <Paper style={paperStyle}>
       {spriteUrl && <img src={spriteUrl} alt={name} />}
