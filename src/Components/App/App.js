@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { Container, Typography } from "@mui/material";
+import { Container, Typography, Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import {
   createTheme,
@@ -43,6 +43,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <Box sx={{bgcolor:"#D3F8E2"}}>
       <Container className="App">
         <Typography variant="h1">Pokemon</Typography>
         <Grid container spacing={2}>
@@ -52,7 +53,8 @@ function App() {
             </Grid>
           ))}
         </Grid>
-      </Container>
+        </Container>
+      </Box>
     </ThemeProvider>
   );
 }
