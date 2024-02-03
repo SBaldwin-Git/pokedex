@@ -1,6 +1,6 @@
 import React from "react";
-import { Paper } from "@mui/material";
-import '@fontsource/concert-one';
+import { Paper, Typography } from "@mui/material";
+import "@fontsource/concert-one";
 
 function PokemonCard({ name, spriteUrl }) {
   const paperStyle = {
@@ -15,7 +15,12 @@ function PokemonCard({ name, spriteUrl }) {
   return (
     <Paper style={paperStyle}>
       {spriteUrl && <img src={spriteUrl} alt={name} />}
-      <h2 style={{fontFamily:"concert one", fontSize:"3rem"}}>{name}</h2>
+      <Typography
+        variant="h2"
+        style={{ fontFamily: "concert one", fontSize: "3rem" }}
+      >
+        {name}
+      </Typography>
     </Paper>
   );
 }
