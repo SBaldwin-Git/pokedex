@@ -43,16 +43,19 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{bgcolor:"#D3F8E2"}}>
-      <Container className="App">
-        <Typography variant="h1">Pokemon</Typography>
-        <Grid container spacing={2}>
-          {pokemon.map((pokemon, index) => (
-            <Grid item xs={6} key={index}>
-              <PokemonCard name={pokemon.name} spriteUrl={spriteUrls[index]} />
-            </Grid>
-          ))}
-        </Grid>
+      <Box sx={{ bgcolor: "#D3F8E2" }}>
+        <Container className="App">
+          <Typography variant="h1">Pokemon</Typography>
+          <Grid container spacing={2}>
+            {pokemon.map((pokemon, index) => (
+              <Grid item xs={6} key={index}>
+                <PokemonCard
+                  name={pokemon.name}
+                  spriteUrl={spriteUrls[index]}
+                />
+              </Grid>
+            ))}
+          </Grid>
         </Container>
       </Box>
     </ThemeProvider>
