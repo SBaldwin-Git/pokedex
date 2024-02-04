@@ -72,7 +72,7 @@ function HeaderBar() {
   }));
 
   return (
-    <AppBar position="static" style={{ backgroundColor: "#232323" }}>
+    <AppBar position="fixed" style={{ backgroundColor: "#232323" }}>
       <Toolbar style={headerStyle}>
         {/* Left side with menu icon and title */}
         <div style={{ display: "flex", alignItems: "center" }}>
