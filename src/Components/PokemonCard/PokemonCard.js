@@ -19,7 +19,7 @@ function PokemonCard({ name, spriteUrl }) {
       {spriteUrl && <img src={spriteUrl} alt={name} />}
       <Typography
         variant="h2"
-        style={{ fontFamily: "concert one", fontSize: "3rem" }}
+        style={{ fontFamily: "concert one", fontSize: "2rem" }}
       >
         {name}
       </Typography>

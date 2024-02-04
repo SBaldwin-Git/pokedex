@@ -1,6 +1,7 @@
 import "./App.css";
+import "@fontsource/concert-one";
 import { useState, useEffect } from "react";
-import { Container, Typography, Box } from "@mui/material";
+import { Container, Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import {
   createTheme,
@@ -8,6 +9,7 @@ import {
   ThemeProvider,
 } from "@mui/material/styles";
 import PokemonCard from "../PokemonCard/PokemonCard";
+import HeaderBar from "../HeaderBar/HeaderBar";
 
 function App() {
   let theme = createTheme();
@@ -43,9 +45,10 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <HeaderBar />
       <Box sx={{ bgcolor: "#D3F8E2" }}>
         <Container className="App">
-          <Typography variant="h1">Pokemon</Typography>
+          {/* <Typography variant="h1">Pokemon</Typography> */}
           <Grid container spacing={2}>
             {pokemon.map((pokemon, index) => (
               <Grid item xs={6} key={index}>
