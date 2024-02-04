@@ -8,6 +8,8 @@ function PokemonCard({ name, spriteUrl }) {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
+    padding: "1rem",
+    borderRadius: "2rem",
   };
 
   name = name.charAt(0).toUpperCase() + name.slice(1);
