@@ -46,7 +46,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <HeaderBar />
-      <Box sx={{ bgcolor: "#D3F8E2", pt: "5.2rem" }}>
+      <Box sx={{ bgcolor: "#D3F8E2", pt: "6rem" }}>
         <Container className="App">
           {/* <Typography variant="h1">Pokemon</Typography> */}
           <Grid container spacing={2}>
