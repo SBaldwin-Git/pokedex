@@ -51,7 +51,7 @@ function App() {
           {/* <Typography variant="h1">Pokemon</Typography> */}
           <Grid container spacing={2}>
             {pokemon.map((pokemon, index) => (
-              <Grid item="true" xs={6} key={index}>
+              <Grid item="true" xs={4} key={index}>
                 <PokemonCard
                   name={pokemon.name}
                   spriteUrl={spriteUrls[index]}

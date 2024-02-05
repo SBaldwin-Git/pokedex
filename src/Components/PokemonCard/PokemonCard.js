@@ -16,7 +16,7 @@ function PokemonCard({ name, spriteUrl }) {
 
   return (
     <Paper style={paperStyle}>
-      {spriteUrl && <img src={spriteUrl} alt={name} />}
+      {spriteUrl && <img src={spriteUrl} alt={name} style={{height:"14rem"}}/>}
       <Typography
         variant="h2"
         style={{ fontFamily: "concert one", fontSize: "2rem" }}
