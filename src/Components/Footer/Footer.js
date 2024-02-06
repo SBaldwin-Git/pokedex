@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import React from 'react'
 
 // **
@@ -6,9 +7,7 @@ import React from 'react'
 
 function Footer() {
   return (
-    <a href="https://www.flaticon.com/free-icons/pokemon" title="pokemon icons">
-      Pokemon icons created by Those Icons - Flaticon
-    </a>
+    <Box></Box>
   );
 }
 

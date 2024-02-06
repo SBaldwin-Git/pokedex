@@ -1,6 +1,7 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, IconButton, Box } from "@mui/material";
-import pokeballImage from "./pokeball.png";
+import pokeballImage from "./my_pokeball_icon.png";
+import "@fontsource/pixelify-sans";
 
 function HeaderBar() {
  // Styling for the header
@@ -15,7 +16,7 @@ function HeaderBar() {
 
   // Styling for the header font
   const headerFontStyle = {
-    fontFamily: "Roboto",
+    fontFamily: "'Pixelify Sans', sans-serif",
     fontSize: "2.5rem",
     fontWeight: "bold",
     marginLeft: "1rem",
