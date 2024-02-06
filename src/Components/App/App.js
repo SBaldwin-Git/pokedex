@@ -1,5 +1,5 @@
 import "./App.css";
-import "@fontsource/concert-one";
+import "@fontsource-variable/pixelify-sans";
 import { useState, useEffect } from "react";
 import { Container, Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
