@@ -1,7 +1,7 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, IconButton, Box } from "@mui/material";
 import pokeballImage from "./my_pokeball_icon.png";
-import "@fontsource/pixelify-sans";
+import "@fontsource/press-start-2p";
 
 function HeaderBar() {
  // Styling for the header
@@ -16,7 +16,7 @@ function HeaderBar() {
 
   // Styling for the header font
   const headerFontStyle = {
-    fontFamily: "'Pixelify Sans', sans-serif",
+    fontFamily: "'Press Start 2P', cursive",
     fontSize: "2.5rem",
     fontWeight: "bold",
     marginLeft: "1rem",
@@ -35,7 +35,7 @@ function HeaderBar() {
             <img
               src={pokeballImage}
               alt="pokeball-icon"
-              style={{ height: "4rem" }}
+              style={{ height: "4rem", imageRendering: "pixelated" }}
             />
           </IconButton>
         </Box>

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Paper, Typography } from "@mui/material";
-import "@fontsource/pixelify-sans";
+import "@fontsource/press-start-2p";
 
-function PokemonCard({ name, spriteUrl }) {
+function PokemonCard({ name, spriteUrl, number}) {
   const [isDesaturated, setIsDesaturated] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -19,7 +19,7 @@ function PokemonCard({ name, spriteUrl }) {
     borderRadius: "2rem",
     filter: isDesaturated ? "grayscale(100%)" : "none",
     cursor: isHovered ? "pointer" : "auto", // Change cursor dynamically
-    fontFamily: "'Pixelify Sans', sans-serif", // Set font family
+    fontFamily: "'Press Start 2P', cursive", // Set font family
   };
 
   name = name.charAt(0).toUpperCase() + name.slice(1);
@@ -40,9 +40,9 @@ function PokemonCard({ name, spriteUrl }) {
       )}
       <Typography
         variant="h2"
-        style={{ fontSize: "2rem", fontFamily: "'Pixelify Sans', sans-serif" }} // Set font family
+        style={{ fontSize: "1.2rem", fontFamily: "'Press Start 2P', cursive" }} // Set font family
       >
-        {name}
+        #{number} - {name}
       </Typography>
     </Paper>
   );
