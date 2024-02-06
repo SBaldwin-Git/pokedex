@@ -11,18 +11,17 @@ function PokemonCard({ name, spriteUrl, number }) {
   const [isHovered, setIsHovered] = useState(false);
 
   // Function to toggle desaturation and save the state in a cookie
-const toggleDesaturation = () => {
-  const newDesaturationState = !isDesaturated;
-  setIsDesaturated(newDesaturationState);
+  const toggleDesaturation = () => {
+    const newDesaturationState = !isDesaturated;
+    setIsDesaturated(newDesaturationState);
 
-  // Save the desaturation state in a cookie with the unique key
-  Cookies.set(cookieKey, newDesaturationState, {
-    expires: 7, // expires in 7 days
-    sameSite: "None", // Set SameSite attribute to None
-    secure: true, // Set Secure attribute
-  });
-};
-
+    // Save the desaturation state in a cookie with the unique key
+    Cookies.set(cookieKey, newDesaturationState, {
+      expires: 7, // expires in 7 days
+      sameSite: "None", // Set SameSite attribute to None
+      secure: true, // Set Secure attribute
+    });
+  };
 
   // Effect to load the desaturation state from a cookie when the component mounts
   useEffect(() => {
@@ -33,7 +32,7 @@ const toggleDesaturation = () => {
     if (desaturationState !== undefined) {
       setIsDesaturated(desaturationState === "true");
     }
-  }, []);
+  }, [cookieKey]); // Add cookieKey as a dependency
 
   const paperStyle = {
     display: "flex",
