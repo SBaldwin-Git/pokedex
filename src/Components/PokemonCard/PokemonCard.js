@@ -59,7 +59,11 @@ function PokemonCard({ name, spriteUrl, number }) {
         <img
           src={spriteUrl}
           alt={name}
-          style={{ height: "14rem", imageRendering: "pixelated" }}
+          style={{
+            height: "auto",
+            maxWidth: "100%",
+            imageRendering: "pixelated",
+          }}
         />
       )}
       <Typography
