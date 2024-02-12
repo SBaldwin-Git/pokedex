@@ -4,7 +4,7 @@ import pokeballImage from "./my_pokeball_icon.png";
 import "@fontsource/press-start-2p";
 
 function HeaderBar() {
- // Styling for the header
+  // Styling for the header
   const headerStyle = {
     backgroundColor: "#232323",
     color: "#FBFCF8",
@@ -14,10 +14,22 @@ function HeaderBar() {
     padding: "0.5",
   };
 
+  const minWidthForScaling = "1rem";
+
+  const calculateFontSize = (baseSize, scaleFactor, minWidth) => {
+    const scaleFactorNumber = parseFloat(scaleFactor);
+    const calculatedFontSize = `calc(${baseSize} + ${scaleFactorNumber} * (100vw - ${minWidth}))`;
+    console.log("Calculated Font Size:", calculatedFontSize);
+
+    return {
+      fontSize: calculatedFontSize,
+    };
+  };
+
   // Styling for the header font
   const headerFontStyle = {
     fontFamily: "'Press Start 2P', cursive",
-    fontSize: "2.5rem",
+    ...calculateFontSize("1rem", "0.02", minWidthForScaling),
     fontWeight: "bold",
     marginLeft: "1rem",
   };
