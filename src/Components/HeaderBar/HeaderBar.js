@@ -29,7 +29,7 @@ function HeaderBar() {
   // Styling for the header font
   const headerFontStyle = {
     fontFamily: "'Press Start 2P', cursive",
-    ...calculateFontSize("1rem", "0.02", minWidthForScaling),
+    ...calculateFontSize("0.7rem", "0.02", minWidthForScaling),
     fontWeight: "bold",
     marginLeft: "1rem",
   };
