@@ -3,8 +3,9 @@ import { useTheme } from "@mui/system";
 import { Paper, Typography, useMediaQuery } from "@mui/material";
 import "@fontsource/press-start-2p";
 import Cookies from "js-cookie";
+import pokeballImage from "./my_pokeball_icon.png";
 
-function PokemonCard({ name, spriteUrl, number }) {
+function PokemonCard({ name, spriteUrl, number, loading }) {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -13,6 +14,12 @@ function PokemonCard({ name, spriteUrl, number }) {
 
   const [isDesaturated, setIsDesaturated] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  // Handler for the image load event
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
 
   // Function to toggle desaturation and save the state in a cookie
   const toggleDesaturation = () => {
@@ -66,6 +73,43 @@ function PokemonCard({ name, spriteUrl, number }) {
     };
   };
 
+  if (loading) {
+    // Check if it's still loading, if there's no spriteUrl, or if the image is not loaded
+    return (
+      <Paper
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "0.5rem",
+          borderRadius: "2rem",
+          fontFamily: "'Press Start 2P', cursive",
+        }}
+      >
+        <img
+          src={pokeballImage}
+          alt="pokeball"
+          style={{ width: "50%", filter: "grayscale(100%)" }}
+        />
+        <Typography
+          variant="h2"
+          style={{
+            fontFamily: "'Press Start 2P', cursive",
+            textAlign: isSmallScreen ? "center" : "left",
+            padding: isSmallScreen ? "0.5rem" : "0.2rem",
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+            textOverflow: "ellipsis",
+            ...calculateFontSize("0.25rem", "0.01", minWidthForScaling),
+          }}
+        >
+          Loading...
+        </Typography>
+      </Paper>
+    );
+  }
+
   return (
     <Paper
       style={paperStyle}
@@ -73,17 +117,17 @@ function PokemonCard({ name, spriteUrl, number }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {spriteUrl && (
-        <img
-          src={spriteUrl}
-          alt={name}
-          style={{
-            height: "auto",
-            minWidth: "80%",
-            imageRendering: "pixelated",
-          }}
-        />
-      )}
+      <img
+        src={spriteUrl || pokeballImage}
+        alt={name}
+        style={{
+          height: "auto",
+          minWidth: "80%",
+          imageRendering: "pixelated",
+          opacity: imageLoaded ? 1 : 0, // Apply opacity to control the transition effect
+        }}
+        onLoad={handleImageLoad} // Attach the load event handler
+      />
       <Typography
         variant="h2"
         style={{

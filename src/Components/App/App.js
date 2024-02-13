@@ -20,6 +20,12 @@ function App() {
   const [spriteUrls, setSpriteUrls] = useState([]);
   const [pokemonNumber, setPokemonNumber] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [placeholderData, setPlaceholderData] = useState(
+    Array.from({ length: 9 }, (_, index) => ({
+      name: `Placeholder ${index + 1}`,
+      number: index + 1,
+    }))
+  );
 
   useEffect(() => {
     console.log("Fetching data...");
@@ -38,6 +44,7 @@ function App() {
         await fetchSpriteUrls(urls);
 
         setPokemon(data.results);
+        setPlaceholderData([]); // Clear placeholder data
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -45,17 +52,11 @@ function App() {
       }
     };
 
-    // Simulate a delay of 2000 milliseconds
-    const timeoutId = setTimeout(() => {
-      fetchData();
-    }, 2000);
-
-    // Cleanup timeout in case component unmounts before the timeout
-    return () => clearTimeout(timeoutId);
+   fetchData();
   }, []);
 
-  const fetchPokemonNumber = (number) =>
-  {
+  //Pokemon number fetching function
+  const fetchPokemonNumber = (number) => {
     const pokemonNumberPromises = number.map((number) =>
       fetch(number)
         .then((response) => response.json())
@@ -65,8 +66,9 @@ function App() {
     Promise.all(pokemonNumberPromises)
       .then((pokemonNumber) => setPokemonNumber(pokemonNumber))
       .catch((error) => console.error("Error fetching pokemon number:", error));
-  }
+  };
 
+  //URL fetching function for sprites
   const fetchSpriteUrls = (urls) => {
     const spritePromises = urls.map((url) =>
       fetch(url)
@@ -79,21 +81,19 @@ function App() {
       .catch((error) => console.error("Error fetching sprite URLs:", error));
   };
 
-  
-
   return (
     <ThemeProvider theme={theme}>
       <HeaderBar />
       <Box sx={{ bgcolor: "#D3F8E2", pt: "6rem" }}>
         <Container className="App">
-          {/* <Typography variant="h1">Pokemon</Typography> */}
           <Grid container spacing={2}>
             {pokemon.map((pokemon, index) => (
-              <Grid item="true" xs={4} key={index}>
+              <Grid item key={index} xs={4}>
                 <PokemonCard
                   name={pokemon.name}
                   number={pokemonNumber[index]}
                   spriteUrl={spriteUrls[index]}
+                  loading={loading}
                 />
               </Grid>
             ))}
