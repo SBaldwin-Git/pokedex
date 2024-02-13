@@ -24,6 +24,7 @@ function App() {
   const [spriteUrls, setSpriteUrls] = useState([]);
   const [pokemonNumber, setPokemonNumber] = useState([]);
   const [loading, setLoading] = useState(true);
+  // eslint-disable-next-line
   const [placeholderData, setPlaceholderData] = useState(
     Array.from({ length: 9 }, (_, index) => ({
       name: `Placeholder ${index + 1}`,
