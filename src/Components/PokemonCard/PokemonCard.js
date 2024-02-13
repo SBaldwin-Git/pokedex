@@ -6,12 +6,14 @@ import Cookies from "js-cookie";
 import pokeballImage from "./my_pokeball_icon.png";
 
 function PokemonCard({ name, spriteUrl, number, loading }) {
+  // Access theme and screen size using MUI hooks
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   // Generate a unique identifier for each Pokémon card based on the name and number
   const cookieKey = `desaturationState_${name}_${number}`;
 
+  // State to manage desaturation, hover, and image load
   const [isDesaturated, setIsDesaturated] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -45,6 +47,7 @@ function PokemonCard({ name, spriteUrl, number, loading }) {
     }
   }, [cookieKey]); // Add cookieKey as a dependency
 
+  // Style for the Pokémon card
   const paperStyle = {
     display: "flex",
     flexDirection: "column",
@@ -58,11 +61,13 @@ function PokemonCard({ name, spriteUrl, number, loading }) {
     fontFamily: "'Press Start 2P', cursive",
   };
 
+  // Capitalize the first letter of the Pokémon name
   name = name.charAt(0).toUpperCase() + name.slice(1);
 
   // Define minimum width for scaling font size
   const minWidthForScaling = "100px";
 
+  // Function to calculate font size based on viewport width
   const calculateFontSize = (baseSize, scaleFactor, minWidth) => {
     const scaleFactorNumber = parseFloat(scaleFactor);
     const calculatedFontSize = `calc(${baseSize} + ${scaleFactorNumber} * (100vw - ${minWidth}))`;
@@ -73,8 +78,8 @@ function PokemonCard({ name, spriteUrl, number, loading }) {
     };
   };
 
+  // Return a loading placeholder or the actual Pokémon card
   if (loading) {
-    // Check if it's still loading, if there's no spriteUrl, or if the image is not loaded
     return (
       <Paper
         style={{
@@ -110,6 +115,7 @@ function PokemonCard({ name, spriteUrl, number, loading }) {
     );
   }
 
+  // Return the actual Pokémon card with toggleable desaturation and hover effects
   return (
     <Paper
       style={paperStyle}
