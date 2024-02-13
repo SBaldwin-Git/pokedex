@@ -19,19 +19,39 @@ function App() {
   const [pokemon, setPokemon] = useState([]);
   const [spriteUrls, setSpriteUrls] = useState([]);
   const [pokemonNumber, setPokemonNumber] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     console.log("Fetching data...");
-    fetch(BASE_URL)
-      .then((response) => response.json())
-      .then((data) => {
-        setPokemon(data.results);
 
+    // Simulating API call delay
+    const fetchData = async () => {
+      try {
+        const response = await fetch(BASE_URL);
+        const data = await response.json();
+
+        // Simulating additional API calls
         const number = data.results.map((p) => p.url);
-        fetchPokemonNumber(number);
+        await fetchPokemonNumber(number);
+
         const urls = data.results.map((p) => p.url);
-        fetchSpriteUrls(urls);
-      });
+        await fetchSpriteUrls(urls);
+
+        setPokemon(data.results);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      }
+    };
+
+    // Simulate a delay of 2000 milliseconds
+    const timeoutId = setTimeout(() => {
+      fetchData();
+    }, 2000);
+
+    // Cleanup timeout in case component unmounts before the timeout
+    return () => clearTimeout(timeoutId);
   }, []);
 
   const fetchPokemonNumber = (number) =>
