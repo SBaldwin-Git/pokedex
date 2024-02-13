@@ -21,11 +21,13 @@ function HeaderBar() {
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "center",
-    padding: "0.5",
+    padding: "0.5", // Padding value might be intended to be "0.5rem"
   };
 
+  // Define minimum width for scaling font size
   const minWidthForScaling = "1rem";
 
+  // Function to calculate font size based on a base size, scale factor, and minimum width
   const calculateFontSize = (baseSize, scaleFactor, minWidth) => {
     const scaleFactorNumber = parseFloat(scaleFactor);
     const calculatedFontSize = `calc(${baseSize} + ${scaleFactorNumber} * (100vw - ${minWidth}))`;
@@ -44,6 +46,7 @@ function HeaderBar() {
     marginLeft: "1rem",
   };
 
+  // Styling for the search box
   const searchBoxStyle = {
     display: "flex",
     alignItems: "center",
@@ -52,20 +55,23 @@ function HeaderBar() {
     backgroundColor: alpha("#FBFCF8", 0.1),
   };
 
+  // Styling for the search icon
   const searchIconStyle = {
     marginRight: "8px",
     color: alpha("#FBFCF8", 0.7),
   };
 
+  // Styling for the input base (search input)
   const inputBaseStyle = {
     color: "#FBFCF8",
     width: "100%",
   };
 
-
+  // Render the app bar with toolbar, logo, title, and search input
   return (
     <AppBar position="fixed" style={{ backgroundColor: "#232323" }}>
       <Toolbar style={headerStyle}>
+        {/* Logo */}
         <Box>
           <IconButton
             edge="start"
@@ -80,11 +86,13 @@ function HeaderBar() {
             />
           </IconButton>
         </Box>
+        {/* Title */}
         <Box>
           <Typography variant="h1" style={headerFontStyle}>
             My Pokédex
           </Typography>
         </Box>
+        {/* Search Input */}
         <Box sx={{ flexGrow: 1, maxWidth: "20%", marginLeft: "auto" }}>
           <div style={searchBoxStyle}>
             <SearchIcon style={searchIconStyle} />
