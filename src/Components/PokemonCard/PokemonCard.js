@@ -71,7 +71,6 @@ function PokemonCard({ name, spriteUrl, number, loading }) {
   const calculateFontSize = (baseSize, scaleFactor, minWidth) => {
     const scaleFactorNumber = parseFloat(scaleFactor);
     const calculatedFontSize = `calc(${baseSize} + ${scaleFactorNumber} * (100vw - ${minWidth}))`;
-    console.log("Calculated Font Size:", calculatedFontSize);
 
     return {
       fontSize: calculatedFontSize,

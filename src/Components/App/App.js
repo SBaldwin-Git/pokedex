@@ -51,6 +51,7 @@ function App() {
 
         // Update state with fetched data
         setPokemon(data.results);
+        console.log("Fetched data:", data.results);
         setPlaceholderData([]); // Clear placeholder data
         setLoading(false);
       } catch (error) {
