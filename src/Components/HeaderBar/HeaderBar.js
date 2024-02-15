@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  IconButton,
-  Box,
-} from "@mui/material";
-
+import { AppBar, Toolbar, Typography, IconButton, Box } from "@mui/material";
 import SearchBar from "../SearchBar/SearchBar";
 import pokeballImage from "./my_pokeball_icon.png";
 import "@fontsource/press-start-2p";
@@ -48,7 +41,6 @@ function HeaderBar() {
   return (
     <AppBar position="fixed" style={{ backgroundColor: "#232323" }}>
       <Toolbar style={headerStyle}>
-        {/* Logo */}
         <Box>
           <IconButton
             edge="start"
@@ -63,7 +55,6 @@ function HeaderBar() {
             />
           </IconButton>
         </Box>
-        {/* Title */}
         <Box>
           <Typography variant="h1" style={headerFontStyle}>
             My Pokédex
