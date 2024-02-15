@@ -21,8 +21,6 @@ function App() {
 
   // State variables to manage Pokémon data, sprite URLs, loading status, and placeholder data
   const [pokemon, setPokemon] = useState([]);
-  const [spriteUrls, setSpriteUrls] = useState([]);
-  const [pokemonNumber, setPokemonNumber] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   // eslint-disable-next-line
