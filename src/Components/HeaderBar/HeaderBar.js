@@ -4,7 +4,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import pokeballImage from "./my_pokeball_icon.png";
 import "@fontsource/press-start-2p";
 
-function HeaderBar() {
+function HeaderBar({ setSearchTerm}) {
   // Styling for the header
   const headerStyle = {
     backgroundColor: "#232323",
@@ -59,7 +59,7 @@ function HeaderBar() {
             My Pokédex
           </Typography>
         </Box>
-        <SearchBar />
+        <SearchBar setSearchTerm={setSearchTerm} />
       </Toolbar>
     </AppBar>
   );

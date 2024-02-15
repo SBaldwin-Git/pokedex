@@ -2,7 +2,7 @@ import React from "react";
 import { Box, InputBase, alpha } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
-function SearchBar() {
+function SearchBar({ setSearchTerm }) {
   // Styling for the search box
   const searchBoxStyle = {
     display: "flex",
@@ -32,6 +32,7 @@ function SearchBar() {
           placeholder="Search..."
           inputProps={{ "aria-label": "search" }}
           style={inputBaseStyle}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
     </Box>

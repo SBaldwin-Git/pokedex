@@ -23,6 +23,7 @@ function App() {
   const [pokemon, setPokemon] = useState([]);
   const [spriteUrls, setSpriteUrls] = useState([]);
   const [pokemonNumber, setPokemonNumber] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   // eslint-disable-next-line
   const [placeholderData, setPlaceholderData] = useState(
@@ -43,15 +44,21 @@ function App() {
         const data = await response.json();
 
         // Simulating additional API calls
-        const number = data.results.map((p) => p.url);
-        await fetchPokemonNumber(number);
+        const pokemonPromises = data.results.map(async (p) => {
+          const detailsResponse = await fetch(p.url);
+          const detailsData = await detailsResponse.json();
+          return {
+            name: p.name,
+            number: detailsData.id,
+            spriteUrl: detailsData.sprites.front_default,
+          };
+        });
 
-        const urls = data.results.map((p) => p.url);
-        await fetchSpriteUrls(urls);
+        const fetchedPokemon = await Promise.all(pokemonPromises);
 
         // Update state with fetched data
-        setPokemon(data.results);
-        console.log("Fetched data:", data.results);
+        setPokemon(fetchedPokemon);
+        console.log("Fetched data:", fetchedPokemon);
         setPlaceholderData([]); // Clear placeholder data
         setLoading(false);
       } catch (error) {
@@ -63,45 +70,25 @@ function App() {
     fetchData();
   }, []);
 
-  // Function to fetch Pokémon numbers based on URLs
-  const fetchPokemonNumber = (number) => {
-    const pokemonNumberPromises = number.map((number) =>
-      fetch(number)
-        .then((response) => response.json())
-        .then((data) => data.id)
-    );
-
-    Promise.all(pokemonNumberPromises)
-      .then((pokemonNumber) => setPokemonNumber(pokemonNumber))
-      .catch((error) => console.error("Error fetching pokemon number:", error));
-  };
-
-  // Function to fetch sprite URLs based on Pokémon URLs
-  const fetchSpriteUrls = (urls) => {
-    const spritePromises = urls.map((url) =>
-      fetch(url)
-        .then((response) => response.json())
-        .then((data) => data.sprites.front_default)
-    );
-
-    Promise.all(spritePromises)
-      .then((spriteUrls) => setSpriteUrls(spriteUrls))
-      .catch((error) => console.error("Error fetching sprite URLs:", error));
-  };
+const filteredPokemon = searchTerm
+  ? pokemon.filter((item) =>
+      item.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+    )
+  : pokemon;
 
   // Render Pokémon cards using fetched data
   return (
     <ThemeProvider theme={theme}>
-      <HeaderBar />
-      <Box sx={{ bgcolor: "#D3F8E2", pt: "6rem" }}>
+      <HeaderBar setSearchTerm={setSearchTerm} />
+      <Box sx={{ bgcolor: "#D3F8E2", pt: "6rem", minHeight: "100vh" }}>
         <Container className="App">
           <Grid container spacing={2}>
-            {pokemon.map((pokemon, index) => (
+            {filteredPokemon.map((pokemon, index) => (
               <Grid item key={index} xs={4}>
                 <PokemonCard
                   name={pokemon.name}
-                  number={pokemonNumber[index]}
-                  spriteUrl={spriteUrls[index]}
+                  number={pokemon.number}
+                  spriteUrl={pokemon.spriteUrl}
                   loading={loading}
                 />
               </Grid>
