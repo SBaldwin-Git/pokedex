@@ -5,11 +5,9 @@ import {
   Typography,
   IconButton,
   Box,
-  InputBase,
-  alpha,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 
+import SearchBar from "../SearchBar/SearchBar";
 import pokeballImage from "./my_pokeball_icon.png";
 import "@fontsource/press-start-2p";
 
@@ -46,27 +44,6 @@ function HeaderBar() {
     marginLeft: "1rem",
   };
 
-  // Styling for the search box
-  const searchBoxStyle = {
-    display: "flex",
-    alignItems: "center",
-    paddingLeft: "8px",
-    borderRadius: "4px",
-    backgroundColor: alpha("#FBFCF8", 0.1),
-  };
-
-  // Styling for the search icon
-  const searchIconStyle = {
-    marginRight: "8px",
-    color: alpha("#FBFCF8", 0.7),
-  };
-
-  // Styling for the input base (search input)
-  const inputBaseStyle = {
-    color: "#FBFCF8",
-    width: "100%",
-  };
-
   // Render the app bar with toolbar, logo, title, and search input
   return (
     <AppBar position="fixed" style={{ backgroundColor: "#232323" }}>
@@ -92,17 +69,7 @@ function HeaderBar() {
             My Pokédex
           </Typography>
         </Box>
-        {/* Search Input */}
-        <Box sx={{ flexGrow: 1, maxWidth: "20%", marginLeft: "auto" }}>
-          <div style={searchBoxStyle}>
-            <SearchIcon style={searchIconStyle} />
-            <InputBase
-              placeholder="Search..."
-              inputProps={{ "aria-label": "search" }}
-              style={inputBaseStyle}
-            />
-          </div>
-        </Box>
+        <SearchBar />
       </Toolbar>
     </AppBar>
   );
