@@ -117,6 +117,7 @@ function PokemonCard({ name, spriteUrl, number, loading }) {
   // Return the actual Pokémon card with toggleable desaturation and hover effects
   return (
     <Paper
+      data-testid="pokemon-card"
       style={paperStyle}
       onClick={toggleDesaturation}
       onMouseEnter={() => setIsHovered(true)}

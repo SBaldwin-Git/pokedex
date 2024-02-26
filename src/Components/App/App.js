@@ -78,7 +78,7 @@ const filteredPokemon = searchTerm
   return (
     <ThemeProvider theme={theme}>
       <HeaderBar setSearchTerm={setSearchTerm} />
-      <Box sx={{ bgcolor: "#D3F8E2", pt: "6rem", minHeight: "100vh" }}>
+      <Box sx={{ bgcolor: "#D3F8E2", pt: "7rem", minHeight: "100vh" }}>
         <Container className="App">
           <Grid container spacing={2}>
             {filteredPokemon.map((pokemon, index) => (

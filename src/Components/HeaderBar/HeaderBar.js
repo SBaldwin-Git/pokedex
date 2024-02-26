@@ -12,7 +12,7 @@ function HeaderBar({ setSearchTerm}) {
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "center",
-    padding: "0.5", // Padding value might be intended to be "0.5rem"
+    padding: "0.5rem",
   };
 
   // Define minimum width for scaling font size
@@ -38,8 +38,8 @@ function HeaderBar({ setSearchTerm}) {
 
   // Render the app bar with toolbar, logo, title, and search input
   return (
-    <AppBar position="fixed" style={{ backgroundColor: "#232323" }}>
-      <Toolbar style={headerStyle}>
+    <AppBar role="header" position="fixed" style={{ backgroundColor: "#232323" }}>
+      <Toolbar role="toolbar" style={headerStyle}>
         <Box>
           <IconButton
             edge="start"
