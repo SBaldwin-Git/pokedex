@@ -69,9 +69,10 @@ function App() {
         setPokemon(fetchedPokemon);
         console.log("Fetched data:", fetchedPokemon);
         setPlaceholderData([]); // Clear placeholder data
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally {
+        // Set loading state to false after data fetching, whether successful or not
         setLoading(false);
       }
     };
@@ -96,9 +97,14 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <HeaderBar setSearchTerm={setSearchTerm} />
-      <Box sx={{ bgcolor: "#D3F8E2", pt: "7rem", minHeight: "100vh" }}>
+      <Box
+        sx={{ bgcolor: "#D3F8E2", pt: "7rem", minHeight: "100vh" }}
+        data-testid="loading"
+      >
+        {loading && <p>Loading...</p>}{" "}
+        {/* You can customize this loading indicator */}
         <Container className="App">
-          <Grid container spacing={2}>
+          <Grid container spacing={2} data-testid="content">
             {filteredPokemon.map((pokemon, index) => (
               <Grid item key={index} xs={4}>
                 <PokemonCard

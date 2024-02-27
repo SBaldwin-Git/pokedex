@@ -46,7 +46,12 @@ function HeaderBar({ setSearchTerm}) {
 
   // Render the app bar with toolbar, logo, title, and search input
   return (
-    <AppBar role="header" position="fixed" style={{ backgroundColor: "#232323" }}>
+    <AppBar
+      role="header"
+      position="fixed"
+      style={{ backgroundColor: "#232323" }}
+      data-testid="header-bar"
+    >
       <Toolbar role="toolbar" style={headerStyle}>
         <Box>
           <IconButton

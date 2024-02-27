@@ -40,6 +40,7 @@ function SearchBar({ setSearchTerm }) {
           inputProps={{ "aria-label": "search" }}
           style={inputBaseStyle}
           onChange={(e) => setSearchTerm(e.target.value)}
+          data-testid="search-input"
         />
       </div>
     </Box>
