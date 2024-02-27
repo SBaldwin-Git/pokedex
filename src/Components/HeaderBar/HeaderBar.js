@@ -4,6 +4,14 @@ import SearchBar from "../SearchBar/SearchBar";
 import pokeballImage from "./my_pokeball_icon.png";
 import "@fontsource/press-start-2p";
 
+/**
+ * Renders the header bar component.
+ * 
+ * @param {Object} props - The component props.
+ * @param {Function} props.setSearchTerm - The function to set the search term.
+ * @returns {JSX.Element} The rendered header bar component.
+ */
+
 function HeaderBar({ setSearchTerm}) {
   // Styling for the header
   const headerStyle = {

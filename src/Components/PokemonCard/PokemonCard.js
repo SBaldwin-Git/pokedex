@@ -5,6 +5,17 @@ import "@fontsource/press-start-2p";
 import Cookies from "js-cookie";
 import pokeballImage from "./my_pokeball_icon.png";
 
+/**
+ * Renders a Pokémon card component.
+ *
+ * @param {Object} props - The component props.
+ * @param {string} props.name - The name of the Pokémon.
+ * @param {string} props.spriteUrl - The URL of the Pokémon sprite.
+ * @param {number} props.number - The number of the Pokémon.
+ * @param {boolean} props.loading - Indicates if the Pokémon card is in a loading state.
+ * @returns {JSX.Element} The Pokémon card component.
+ */
+
 function PokemonCard({ name, spriteUrl, number, loading }) {
   // Access theme and screen size using MUI hooks
   const theme = useTheme();

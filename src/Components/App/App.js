@@ -1,4 +1,9 @@
-import "./App.css";
+/**
+ * The main component of the Pokedex application.
+ * Renders a list of Pokemon cards based on fetched data from the PokeAPI.
+ * Allows searching for Pokemon by name.
+ */
+
 import "@fontsource/press-start-2p";
 import { useState, useEffect } from "react";
 import { Container, Box } from "@mui/material";
@@ -10,6 +15,12 @@ import {
 } from "@mui/material/styles";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import HeaderBar from "../HeaderBar/HeaderBar";
+
+/**
+ * The main component of the application.
+ * Renders Pokémon cards using fetched data.
+ * @returns {JSX.Element} The rendered component.
+ */
 
 function App() {
   // Create and configure MUI theme
@@ -68,11 +79,18 @@ function App() {
     fetchData();
   }, []);
 
-const filteredPokemon = searchTerm
-  ? pokemon.filter((item) =>
-      item.name.toLowerCase().startsWith(searchTerm.toLowerCase())
-    )
-  : pokemon;
+  /**
+   * Filters the Pokemon based on the search term.
+   * If a search term is provided, filters the Pokemon by name.
+   * @param {string} searchTerm - The search term to filter the Pokemon by.
+   * @returns {Array} - The filtered Pokemon.
+   */
+
+  const filteredPokemon = searchTerm
+    ? pokemon.filter((item) =>
+        item.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+      )
+    : pokemon;
 
   // Render Pokémon cards using fetched data
   return (

@@ -2,6 +2,13 @@ import React from "react";
 import { Box, InputBase, alpha } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
+/**
+ * Renders a search bar component.
+ * @param {Object} props - The component props.
+ * @param {Function} props.setSearchTerm - The function to set the search term.
+ * @returns {JSX.Element} The search bar component.
+ */
+
 function SearchBar({ setSearchTerm }) {
   // Styling for the search box
   const searchBoxStyle = {
